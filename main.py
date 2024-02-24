@@ -14,7 +14,7 @@ router = Router()
 def webapp_builder() -> InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()
     builder.button(
-        text='Click!', web_app=WebAppInfo(
+        text='donorsearch.org', web_app=WebAppInfo(
             url=os.environ.get('WEB_APP_URL')
         )
     )
@@ -24,7 +24,13 @@ def webapp_builder() -> InlineKeyboardMarkup:
 @router.message(CommandStart())
 async def start(message: Message):
     await message.reply(
-        "Hello! Press to start ->",
+        """Привет! Я бот, который поможет вам стать донором. Напишите /donor для получения информации о том, как стать донором.\n
+        Как стать донором: \n
+            1. Посетите веб-сайт donorsearch.org \n
+            2. Найдите раздел "Как стать донором" на главной странице \n
+            3. Ознакомьтесь с информацией о процессе становления донором на сайте \n
+            4. Получите подтверждение о вашем донорстве и начните делать доброе дело! \n
+        """,
         reply_markup=webapp_builder())
 
 
